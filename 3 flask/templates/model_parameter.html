@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title> project title</title>
+  <title> Model Parameter</title>
   <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
   <!-- Boxicons CDN Link -->
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
@@ -18,13 +18,14 @@
   <div class="sidebar">
     <div class="logo-details">
       <i class="bx bxl- icon"></i>
-      <div class="logo_name" style="font-size:15px; padding-top:30px;">
-        <p>project title</p>
+      <div class="logo_name" style="font-size:22px; padding-top:100px;">
+        <p style="text-align: center;">Multi Disease </p>
+        <p style=" text-align: center;">Prediction </p>
       </div>
       <i class="bx bx-menu" id="btn"></i>
     </div>
 
-    <ul class="nav-list" style="margin-top:30px;">
+    <ul class="nav-list" style="margin-top:120px;">
       <li>
         <a href="home">
           <i class="bx bx-grid-alt" style="font-size: 36px;"></i>
@@ -33,13 +34,13 @@
         <span class="tooltip">Home</span>
       </li>
 
-      <li>
+      <!-- <li>
         <a href="eda">
           <i class="bx bx-select-multiple" style="font-size: 36px;"></i>
           <span class="links_name">EDA</span>
         </a>
         <span class="tooltip">EDA</span>
-      </li>
+      </li> -->
 
       <li class="active">
         <a href="model_parameter">
@@ -52,9 +53,9 @@
       <li>
         <a href="detector">
           <i class="bx bx-clinic" style="font-size: 36px;"></i>
-          <span class="links_name">Detector</span>
+          <span class="links_name">Diagnosis</span>
         </a>
-        <span class="tooltip">Detector</span>
+        <span class="tooltip">Diagnosis</span>
       </li>
 
       <li>
@@ -67,19 +68,51 @@
 
     </ul>
   </div>
-  <section class="home-section"  style="padding: 30px">
+  <section class="home-section" style="padding: 35px">
     <div class="switch" style="padding-top: 3px; float: right;">
       <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
       <label for="language-toggle"></label>
       <span class="on">EN</span>
-      <span class="off">KA</span>
+      <span class="off">ಕನ್ನಡ </span>
     </div>
-    <div data-lang="en" class="home_header">
-      Modal parameters
+    <div data-lang="en" class="home_header" style="padding-left: 110px;">
+      Model parameters
     </div>
-    <div data-lang="ka" class="home_header ka">
-      ಇತ್ತೀಚಿನ ದಿನಗಳಲ್ಲಿ,
+    <div data-lang="ka" class="home_header" style="padding-left: 110px;">
+      ಮಾದರಿ ಅಂಶಗಳು
     </div>
+
+
+
+
+    <div style="text-align: center;margin-top: 30px;">
+      <img src="{{url_for('static',filename='model_parameters/eval_1.png')}}" alt="" width="600px">
+      <div data-lang="en">fig. <b>Training Accuracy</b> and <b>Training Loss</b> with <b>epochs</b></div>
+      <div data-lang="ka">ಚಿತ್ರ. <b>ಟ್ರೇನಿಂಗ್ ಅಕ್ಕ್ಯುರಸಿ</b> ಮತ್ತು <b>ಟ್ರೇನಿಂಗ್ ನಷ್ಟ</b> ಜತೆಗೆ <b>ಯುಗಗಳು</b></div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div style="text-align: center;margin-top: 30px;">
+      <img src="{{url_for('static',filename='model_parameters/eval_2.png')}}" alt="" width="600px">
+      <div data-lang="en">fig. <b>Validation Accuracy</b> and <b>Validation Loss</b> with <b>epochs</b></div>
+      <div data-lang="ka">ಚಿತ್ರ. <b>ವ್ಯಾಲಿಡ್ ಅಕ್ಕ್ಯುರಸಿ</b> ಮತ್ತು <b>ವ್ಯಾಲಿಡ್ ನಷ್ಟ</b> ಜತೆಗೆ <b>ಯುಗಗಳು</b></div>
+    </div>
+
+    <br>
+    <hr><br>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <img src="{{url_for('static',filename='model_parameters/ann_classification_report.png')}}" alt="">
+      <div data-lang="en">fig. <b>Classification Report</b> of <b>trained model</b> </div>
+      <div data-lang="ka">ಚಿತ್ರ. ತರಬೇತಿ ಪಡೆದ ಮಾದರಿಯ <b>ವರ್ಗೀಕರಣ ವರದಿ</b></div>
+
+    </div>
+
+
+    <br>
+    <hr><br>
   </section>
   <script>
     $(function () {

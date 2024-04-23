@@ -5,15 +5,24 @@ import numpy as np
 import cv2
 import pickle
 import time
+import subprocess
+
+import os
+
+def run_flask_app():
+    subprocess.Popen('python', "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/3 flask/app.py")
+
+
+
 
 app = Flask(__name__)
 
 # Load face detector, face embedding model, recognizer, and label encoder
-protoPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detectordeploy.prototxt"
-modelPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detectorres10_300x300_ssd_iter_140000.caffemodel"
+protoPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/deploy.prototxt"
+modelPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
-embedder = cv2.dnn.readNetFromTorch("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detectoropenface_nn4.small2.v1.t7")
+embedder = cv2.dnn.readNetFromTorch("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/openface_nn4.small2.v1.t7")
 
 recognizer = pickle.loads(open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/recognizer.pickle", "rb").read())
 le = pickle.loads(open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/le.pickle", "rb").read())
@@ -93,7 +102,7 @@ def generate_frames(entered_username):
             print("entered username : ",entered_username)
 
             if current_label == entered_username:
-                return render_template('index.html')
+                run_flask_app()
             #     print('MATCHED')
             # else:
             #     print('UNMATCHED')
@@ -116,4 +125,4 @@ def set_username():
     return 'ok', 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5005)

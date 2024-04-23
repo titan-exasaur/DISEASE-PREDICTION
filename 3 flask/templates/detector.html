@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Project title</title>
+  <title>Detector</title>
   <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
   <link rel="stylesheet" href="{{ url_for('static',filename='style_detector.css') }}">
   <!-- Boxicons CDN Link -->
@@ -13,7 +13,41 @@
   <script src="{{ url_for('static',filename='jquery-3.7.1.min.js') }}"></script>
 
   <style>
+    #submit_detector {
+      margin-top: 10px;
+    }
 
+    #submit_detector input {
+      text-align: center;
+      font-size: 20px;
+      border-radius: 10px;
+      padding: 5px 2px;
+    }
+
+    table {
+      td:nth-child(odd) {
+        text-align: center;
+        padding: 10px 50px;
+      }
+
+      td:nth-child(even) {
+        text-align: center;
+        padding: 0px 50px;
+      }
+    }
+
+    marquee span {
+      color: yellow;
+    }
+
+    .fl {
+      position: relative;
+      float: left;
+    }
+
+    .fl p {
+      color: white;
+    }
   </style>
 </head>
 
@@ -21,12 +55,13 @@
   <div class="sidebar">
     <div class="logo-details">
       <i class="bx bxl-chat icon"></i>
-      <div class="logo_name" style="font-size:15px; padding-top:30px;">
-        <p>project title</p>
+      <div class="logo_name" style="font-size:22px; padding-top:100px;">
+        <p style="text-align: center;">Multi Disease </p>
+        <p style=" text-align: center;">Prediction </p>
       </div>
       <i class="bx bx-menu" id="btn"></i>
     </div>
-    <ul class="nav-list" style="margin-top:30px;">
+    <ul class="nav-list" style="margin-top:120px;">
       <li>
         <a href="home">
           <i class="bx bx-grid-alt" style="font-size: 36px;"></i>
@@ -35,13 +70,13 @@
         <span class="tooltip">Home</span>
       </li>
 
-      <li>
+      <!-- <li>
         <a href="eda">
           <i class="bx bx-select-multiple" style="font-size: 36px;"></i>
           <span class="links_name">EDA</span>
         </a>
         <span class="tooltip">EDA</span>
-      </li>
+      </li> -->
       <li>
         <a href="model_parameter">
           <i class="bx bx-line-chart" style="font-size: 36px;"></i>
@@ -53,9 +88,9 @@
       <li class="active">
         <a href="detector">
           <i class="bx bx-clinic" style="font-size: 36px;"></i>
-          <span class="links_name">Detector</span>
+          <span class="links_name">Diagnosis</span>
         </a>
-        <span class="tooltip">Detector</span>
+        <span class="tooltip">Diagnosis</span>
       </li>
 
       <li>
@@ -69,29 +104,299 @@
     </ul>
   </div>
   <section class="home-section" style="padding: 30px">
+
+
     <div class=" switch" style="padding-top: 3px; float: right;">
       <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
       <label for="language-toggle"></label>
       <span class="on">EN</span>
-      <span class="off">KA</span>
+      <span class="off">ಕನ್ನಡ</span>
     </div>
+
+
     <div data-lang="en" class="home_header" style="color: white; margin-left:90px;">
-      Detector
+      Diagnosis Tool
     </div>
-    <div data-lang="ka" class="home_header ka" style="color: white;">
-      ಇತ್ತೀಚಿನ ದಿನಗಳಲ್ಲಿ,
-    </div>
-
-    <div class="inputBox">
-      <form action="/submit_detector" method="post">
-
-        <input type="text" name="url" id="url" required>
-        <span>Enter Url</span> <br>
-        <button type="submit" class="btn">send</button>
-      </form>
+    <div data-lang="ka" class="home_header ka" style="color: white; padding-left:125px;">
+      ರೋಗನಿರ್ಣಯ
     </div>
 
-    <p>{{text}}</p>
+    <marquee behavior="alternate" direction="right" data-lang="en">
+      <p style="color: white; letter-spacing: 1px; font-size: 20px;"> put <span>1</span> for <span>YES</span>
+        and <span>0</span> for <span>NO</span> in following box </p>
+    </marquee>
+
+    <marquee behavior="alternate" direction="right" data-lang="ka">
+      <p style="color: white; letter-spacing: 1px; font-size: 20px;">ಕೆಳಗಿನ ಪೆಟ್ಟಿಗೆಗಳಲ್ಲಿ <span
+          class="yellow">ಹೌದು ಎಂದಲ್ಲಿ 1</span> ಮತ್ತು<span class="yellow">ಇಲ್ಲ ಎಂದಲ್ಲಿ </span><span class="yellow">0</span> ಅನ್ನು
+        ಹಾಕಿ </p>
+    </marquee>
+
+    <form action="/submit_detector" method="post" id="submit_detector">
+
+      <div style="height: auto; width: 100%;display: grid; justify-content: center;">
+
+        <div style="text-align: center;position: relative;height: 70px; width:100%;">
+          <div class="fl">
+            <input type="number" name="itching" id="itching" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">itching</p>
+            <p data-lang="ka">ತುರಿಕೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="skin_rash" id="skin_rash" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">Skin rash</p>
+            <p data-lang="ka">ಚರ್ಮದ ದದ್ದು</p>
+          </div>
+
+
+          <div class="fl">
+            <input type="number" name="nodal_skin_eruptions" id="nodal_skin_eruptions" required max="1" min="0"
+              style="width:200px;">
+            <p data-lang="en">nodal skin eruptions</p>
+            <p data-lang="ka">ಚರ್ಮದ ಸ್ಫೋಟಗಳು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="continuous_sneezing" id="continuous_sneezing" required max="1" min="0"
+              style="width:200px;">
+            <p data-lang="en">continuous sneezing</p>
+            <p data-lang="ka">ನಿರಂತರ ಸೀನುವಿಕೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="chills" id="chills" required max="1" min="0" style="width:200px;">
+            <p data-lang="en">chills</p>
+            <p data-lang="ka">ಶೀತ ಭಾವನೆ</p>
+          </div>
+
+
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;position: relative;height: 70px; width:100%;">
+
+          <div class="fl">
+            <input type="number" name="joint_pain" id="joint_pain" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">joint pain</p>
+            <p data-lang="ka">ಕೀಲು ನೋವು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="stomach_pain" id="stomach_pain" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">stomach pain</p>
+            <p data-lang="ka">ಹೊಟ್ಟೆ ನೋವು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="acidity" id="acidity" required max="1" min="0" style="width:200px;">
+            <p data-lang="en">acidity</p>
+            <p data-lang="ka">ಆಮ್ಲೀಯತೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="muscle_wasting" id="muscle_wasting" required max="1" min="0" style="width:200px">
+            <p data-lang="en">muscle wasting</p>
+            <p data-lang="ka">ಸ್ನಾಯು ಕ್ಷೀಣತೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="vomiting" id="vomiting" required max="1" min="0" style="width:200px">
+            <p data-lang="en">vomiting</p>
+            <p data-lang="ka">ವಾಂತಿ</p>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;position: relative;height: 70px; width:100%;">
+
+          <div class="fl">
+            <input type="number" name="burning_micturition" id="burning_micturition" required max="1" min="0"
+              style="width: 200px;">
+            <p data-lang="en">burning micturition</p>
+            <p data-lang="ka">ಸುಡುವ ಮೂತ್ರ ವಿಸರ್ಜನೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="fatigue" id="fatigue" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">fatigue</p>
+            <p data-lang="ka">ಆಯಾಸ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="weight_gain" id="weight_gain" required max="1" min="0" style="width:200px;">
+            <p data-lang="en">weight gain</p>
+            <p data-lang="ka">ತೂಕ ಹೆಚ್ಚಿದೆಯೇ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="anxiety" id="anxiety" required max="1" min="0" style="width:200px">
+            <p data-lang="en">anxiety</p>
+            <p data-lang="ka">ಆತಂಕ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="weight_loss" id="weight_loss" required max="1" min="0" style="width:200px">
+            <p data-lang="en">weight loss</p>
+            <p data-lang="ka">ತೂಕ ಇಳಿಕೆ</p>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;position: relative;height: 70px; width:100%;">
+
+          <div class="fl">
+            <input type="number" name="cough" id="cough" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">cough</p>
+            <p data-lang="ka">ಕೆಮ್ಮು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="sunken_eyes" id="sunken_eyes" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">sunken eyes</p>
+            <p data-lang="ka">ಗುಳಿಬಿದ್ದ ಕಣ್ಣುಗಳು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="indigestion" id="indigestion" required max="1" min="0" style="width:200px;">
+            <p data-lang="en">indigestion</p>
+            <p data-lang="ka">ಅಜೀರ್ಣತೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="headache" id="headache" required max="1" min="0" style="width:200px">
+            <p data-lang="en">headache</p>
+            <p data-lang="ka">ತಲೆ ನೋವು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="yellowish_skin" id="yellowish_skin" required max="1" min="0" style="width:200px">
+            <p data-lang="en">yellowish skin</p>
+            <p data-lang="ka">ಹಳದಿ ಚರ್ಮ</p>
+          </div>
+
+        </div>
+
+
+        <div style="text-align: center; margin-top: 20px;position: relative;height: 70px; width:100%;">
+
+          <div class="fl">
+            <input type="number" name="pain_behind_the_eyes" id="pain_behind_the_eyes" required max="1" min="0"
+              style="width: 200px;">
+            <p data-lang="en">pain behind the eyes</p>
+            <p data-lang="ka">ಕಣ್ಣುಗಳ ಹಿಂದೆ ನೋವು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="constipation" id="constipation" required max="1" min="0" style="width: 200px;">
+            <p data-lang="en">constipation</p>
+            <p data-lang="ka">ಮಲಬದ್ಧತೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="diarrhoea" id="diarrhoea" required max="1" min="0" style="width:200px;">
+            <p data-lang="en">diarrhoea</p>
+            <p data-lang="ka">ಭೇದಿ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="yellow_urine" id="yellow_urine" required max="1" min="0" style="width:200px">
+            <p data-lang="en">yellow urine</p>
+            <p data-lang="ka">ಹಳದಿ ಮೂತ್ರ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="acute_liver_failure" id="acute_liver_failure" required max="1" min="0"
+              style="width:200px">
+            <p data-lang="en">acute liver failure</p>
+            <p data-lang="ka">ತೀವ್ರ ಯಕೃತ್ತಿನ ವೈಫಲ್ಯ</p>
+          </div>
+
+        </div>
+
+
+        <div style="text-align: center; margin-top: 20px;position: relative;height: 70px; width:100%;">
+          <div class="fl">
+            <input type="number" name="swelling_of_stomach" id="swelling_of_stomach" required max="1" min="0"
+              style="width: 250px;">
+            <p data-lang="en">swelling of stomach</p>
+            <p data-lang="ka">ಹೊಟ್ಟೆಯ ಊತ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="cramps" id="cramps" required max="1" min="0" style="width: 250px;">
+            <p data-lang="en">cramps</p>
+            <p data-lang="ka">ದೇಹದಲ್ಲಿ ಸೆಳೆತ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="spinning_movements" id="spinning_movements" required max="1" min="0"
+              style="width:250px;">
+            <p data-lang="en">spinning movements</p>
+            <p data-lang="ka">ತಲೆ ತಿರುಗುವ ಭಾವನೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="weakness_of_one_body_side" id="weakness_of_one_body_side" required max="1"
+              min="0" style="width:250px">
+            <p data-lang="en">weakness of one body side</p>
+            <p data-lang="ka">ದೇಹದ ಒಂದು ಬದಿಯ ದೌರ್ಬಲ್ಯ</p>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;position: relative;height: 70px; width:100%;">
+          <div class="fl">
+            <input type="number" name="family_history" id="family_history" required max="1" min="0" style="width:250px">
+            <p data-lang="en">family history</p>
+            <p data-lang="ka">ಕುಟುಂಬದ ಇತಿಹಾಸ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="pus_filled_pimples" id="pus_filled_pimples" required max="1" min="0"
+              style="width: 250px;">
+            <p data-lang="en">pus filled pimples</p>
+            <p data-lang="ka">ಕೀವು ತುಂಬಿದ ಮೊಡವೆಗಳು</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="skin_peeling" id="skin_peeling" required max="1" min="0" style="width:250px;">
+            <p data-lang="en">skin peeling</p>
+            <p data-lang="ka">ಚರ್ಮದ ಸಿಪ್ಪೆ ಸುಲಿಯುವಿಕೆ</p>
+          </div>
+
+          <div class="fl">
+            <input type="number" name="blister" id="blister" required max="1" min="0" style="width:250px">
+            <p data-lang="en">blister</p>
+            <p data-lang="ka">ಬೊಬ್ಬೆ</p>
+          </div>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+          <button type="submit" class="btn"
+            style="padding: 10px 30px;font-size: 22px; border-radius: 10px;cursor: pointer;"><span
+              data-lang="en">submit</span> <span data-lang="ka">ಪರಿಶೀಲಿನೆ</span></button>
+        </div>
+      </div>
+    </form>
+
+    {% if top_diseases_one %}
+    <!-- <div style="margin-top: 20px; text-align: center;">
+      <img src="{{ url_for('static', filename='uploads/results.png') }}" alt="">
+    </div> -->
+
+
+    <div style="color: white; font-size: 22px; letter-spacing: 1px; text-align: center; margin-top: 50px;">
+      <h2 style="margin-bottom: 20px; background-color: #333; padding: 10px; border-radius: 10px;">Artificial Neural Network Diagnosis:</h2>
+      <h4 >{{ top_diseases_one }}</h4>
+    </div>
+  
+    
+  
+
+
+    {% endif %}
+
   </section>
   <script>
     $(function () {
