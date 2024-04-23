@@ -6,7 +6,7 @@ import pickle
 
 # load the face embeddings
 print("[INFO] loading face embeddings...")
-data = pickle.loads(open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/embeddings.pickle", "rb").read())
+data = pickle.loads(open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/embeddings.pickle", "rb").read())
 
 # encode the labels
 print("[INFO] encoding labels...")
@@ -20,12 +20,12 @@ recognizer = SVC(C=1.0, kernel="linear", probability=True)
 recognizer.fit(data["embeddings"], labels)
 
 # write the actual face recognition model to disk
-f = open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/recognizer.pickle", "wb")
+f = open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/recognizer.pickle", "wb")
 f.write(pickle.dumps(recognizer))
 f.close()
 
 # write the label encoder to disk
-f = open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/le.pickle", "wb")
+f = open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/le.pickle", "wb")
 f.write(pickle.dumps(le))
 f.close()
 

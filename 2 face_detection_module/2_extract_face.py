@@ -9,17 +9,18 @@ import os
 
 # load our serialized face detector from disk
 print("[INFO] loading face detector...")
-protoPath = "/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/deploy.prototxt"
-modelPath = "/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
+
+protoPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/deploy.prototxt"
+modelPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
 # load our serialized face embedding model from disk
 print("[INFO] loading face recognizer...")
-embedder = cv2.dnn.readNetFromTorch("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/openface_nn4.small2.v1.t7")
+embedder = cv2.dnn.readNetFromTorch("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/openface_nn4.small2.v1.t7")
 
 # grab the paths to the input images in our dataset
 print("[INFO] quantifying faces...")
-imagePaths = list(paths.list_images("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_dataset"))
+imagePaths = list(paths.list_images("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_dataset"))
 
 # initialize our lists of extracted facial embeddings and
 # corresponding people names
@@ -94,6 +95,6 @@ for (i, imagePath) in enumerate(imagePaths):
 # dump the facial embeddings + names to disk
 print("[INFO] serializing {} encodings...".format(total))
 data = {"embeddings": knownEmbeddings, "names": knownNames}
-f = open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/embeddings.pickle", "wb")
+f = open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/embeddings.pickle", "wb")
 f.write(pickle.dumps(data))
 f.close()

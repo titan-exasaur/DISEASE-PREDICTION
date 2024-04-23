@@ -11,17 +11,17 @@ import os
 
 # load our serialized face detector from disk
 print("[INFO] loading face detector...")
-protoPath = "/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/deploy.prototxt"
-modelPath = "/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
+protoPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/deploy.prototxt"
+modelPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
 detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
 # load our serialized face embedding model from disk
 print("[INFO] loading face recognizer...")
-embedder = cv2.dnn.readNetFromTorch("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/openface_nn4.small2.v1.t7")
+embedder = cv2.dnn.readNetFromTorch("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detector/openface_nn4.small2.v1.t7")
 
 # load the actual face recognition model along with the label encoderq
-recognizer = pickle.loads(open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/recognizer.pickle", "rb").read())
-le = pickle.loads(open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/le.pickle", "rb").read())
+recognizer = pickle.loads(open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/recognizer.pickle", "rb").read())
+le = pickle.loads(open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/le.pickle", "rb").read())
 
 # initialize the video stream, then allow the camera sensor to warm up
 print("[INFO] starting video stream...")

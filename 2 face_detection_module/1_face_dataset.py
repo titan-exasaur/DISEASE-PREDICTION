@@ -3,7 +3,7 @@ import os
 import time
 
 # Directory where images will be stored
-directory = fr"/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_dataset/"
+directory = fr"/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_dataset/"
 
 # Create the directory if it doesn't exist
 if not os.path.exists(directory):

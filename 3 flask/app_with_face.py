@@ -9,14 +9,14 @@ import time
 app = Flask(__name__)
 
 # Load face detector, face embedding model, recognizer, and label encoder
-protoPath = "/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/deploy.prototxt"
-modelPath = "/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/res10_300x300_ssd_iter_140000.caffemodel"
+protoPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detectordeploy.prototxt"
+modelPath = "/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detectorres10_300x300_ssd_iter_140000.caffemodel"
 detector = cv2.dnn.readNetFromCaffe(protoPath, modelPath)
 
-embedder = cv2.dnn.readNetFromTorch("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/face_detector/openface_nn4.small2.v1.t7")
+embedder = cv2.dnn.readNetFromTorch("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/face_detectoropenface_nn4.small2.v1.t7")
 
-recognizer = pickle.loads(open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/recognizer.pickle", "rb").read())
-le = pickle.loads(open("/media/kumar/HDD1/INFIDATA/EXPERIMENT LAB/face-recognition-module/output/le.pickle", "rb").read())
+recognizer = pickle.loads(open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/recognizer.pickle", "rb").read())
+le = pickle.loads(open("/home/kumar/Downloads/24 [BMSIT] DISEASE PREDICTION/2 face_detection_module/output/le.pickle", "rb").read())
 
 # Global variable to store the current class label
 current_label = ""
