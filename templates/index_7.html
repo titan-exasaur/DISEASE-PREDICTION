@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Recognition</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+
+    <div style=" float: left; margin-left: 50px;">
+
+        <h1 id="login-ui">Face Login UI</h1>
+        <br>
+        <div
+            style=" width: 500px; margin: auto; padding: 160px 0px; border-radius: 20px; box-shadow: 0px 0px 20px 10px white;background-color: rgba(0,0,0,0.1  )">
+
+            <form id="username-form" action="javascript:void(0);">
+                <input type="text" id="username" name="username" placeholder="Enter username"> <br> <br>
+                <button type="submit" id="submit-button">Submit</button>
+            </form>
+
+        </div>
+    </div>
+
+<div style="float: right; width: 600px; height: 500px; margin-top: 90px; margin-right: 150px;">
+    <h3 id="class-label">{{ current_label }}</h3>
+    <iframe style="margin: auto; height: 100%; width: 100%;" id="iframe" src="" frameborder="0"></iframe>
+</div>
+
+    
+
+    <script>
+        let submitButton = document.getElementById("submit-button")
+        submitButton.addEventListener("click", loginHandler)
+        async function loginHandler() {
+            url = "/setUsername"
+            username = document.getElementById("username").value
+            const r = await fetch(url, {
+                method: "POST",
+                mode: "cors",
+                cache: "no-cache",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ username: username })
+            })
+                .then(response => response.text())
+                .then(result => {
+                    console.log("Data sent")
+                    document.getElementById('iframe').src = "/video_feed"
+                    document.getElementById('iframe').style.display = "inline"
+                })
+                .catch(error => {
+                    console.error('Error:', error)
+                })
+        }
+    </script>
+
+</body>
+
+</html>

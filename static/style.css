@@ -1,0 +1,47 @@
+h1 {
+  text-align: center;
+  color: white;
+  text-shadow: 3px 3px 15px gray;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 35px;
+}
+
+form {
+  text-align: center;
+}
+
+form input {
+  font-size: 22px;
+  padding: 10px 30px;
+  text-align: center;
+  border: none;
+  box-shadow: 0px 0px 10px gray;
+}
+
+form button {
+  margin-top: 10px;
+  padding: 10px 30px;
+  box-shadow: 5px 5px 10px rgb(36, 35, 35);
+  font-size: 17px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: transparent;
+  cursor: pointer;
+  background-color: rgb(9, 104, 80);
+  color: white;
+}
+
+form button:hover {
+  box-shadow: 0px 0px 5px black;
+  letter-spacing: 1px;
+}
+
+body {
+  background-image: url(/static/img_2.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8" />
+  <title> project title</title>
+  <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}">
+  <!-- Boxicons CDN Link -->
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="{{ url_for('static',filename='jquery-3.7.1.min.js') }}"></script>
+
+</head>
+
+<body>
+
+  <div class="sidebar">
+    <div class="logo-details">
+      <i class="bx bxl- icon"></i>
+      <div class="logo_name" style="font-size:15px; padding-top:30px;">
+        <p>project title</p>
+      </div>
+      <i class="bx bx-menu" id="btn"></i>
+    </div>
+
+    <ul class="nav-list" style="margin-top:30px;">
+      <li>
+        <a href="home">
+          <i class="bx bx-grid-alt" style="font-size: 36px;"></i>
+          <span class="links_name">Home</span>
+        </a>
+        <span class="tooltip">Home</span>
+      </li>
+
+      <li>
+        <a href="eda">
+          <i class="bx bx-select-multiple" style="font-size: 36px;"></i>
+          <span class="links_name">EDA</span>
+        </a>
+        <span class="tooltip">EDA</span>
+      </li>
+
+      <li class="active">
+        <a href="model_parameter">
+          <i class="bx bx-line-chart" style="font-size: 36px;"></i>
+          <span class="links_name">Model Parameters</span>
+        </a>
+        <span class="tooltip">Model Parameters</span>
+      </li>
+
+      <li>
+        <a href="detector">
+          <i class="bx bx-clinic" style="font-size: 36px;"></i>
+          <span class="links_name">Detector</span>
+        </a>
+        <span class="tooltip">Detector</span>
+      </li>
+
+      <li>
+        <a href="/">
+          <i class="bx bx-log-out" style="font-size: 36px;"></i>
+          <span class="links_name">Log out</span>
+        </a>
+        <span class="tooltip">Log out</span>
+      </li>
+
+    </ul>
+  </div>
+  <section class="home-section"  style="padding: 30px">
+    <div class="switch" style="padding-top: 3px; float: right;">
+      <input id="language-toggle" class="check-toggle check-toggle-round-flat" type="checkbox">
+      <label for="language-toggle"></label>
+      <span class="on">EN</span>
+      <span class="off">KA</span>
+    </div>
+    <div data-lang="en" class="home_header">
+      Modal parameters
+    </div>
+    <div data-lang="ka" class="home_header ka">
+      ಇತ್ತೀಚಿನ ದಿನಗಳಲ್ಲಿ,
+    </div>
+  </section>
+  <script>
+    $(function () {
+      checkLang();
+    })
+    $(function () {
+      checkLang();
+      $('#language-toggle').click(function () {
+        var lang = 'en';
+        if (this.checked) {
+          lang = 'ka';
+        }
+        $("[data-lang]").hide();
+        $("[data-lang='" + lang + "']").show();
+        var cookiedt = new Date();
+        cookiedt.setDate(cookiedt.getTime() + (30 * 24 * 60 * 60 * 1000))
+        document.cookie = 'lang=' + lang + '; expires=' + cookiedt;
+      })
+    })
+  </script>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
